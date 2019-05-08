@@ -1,0 +1,21 @@
+{
+  "nested": {
+    "nodedemo": {
+      "nested": {
+        "helloworld": {
+          "fields": {
+            "str": {
+              "rule": "required",
+              "type": "string",
+              "id": 2
+            },
+            "opt": {
+              "type": "int32",
+              "id": 3
+            }
+          }
+        }
+      }
+    }
+  }
+}
