@@ -24,6 +24,7 @@ $root.nodedemo = (function() {
          * Properties of a helloworld.
          * @memberof nodedemo
          * @interface Ihelloworld
+         * @property {number} id helloworld id
          * @property {string} str helloworld str
          * @property {number|null} [opt] helloworld opt
          */
@@ -42,6 +43,14 @@ $root.nodedemo = (function() {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * helloworld id.
+         * @member {number} id
+         * @memberof nodedemo.helloworld
+         * @instance
+         */
+        helloworld.prototype.id = 0;
 
         /**
          * helloworld str.
@@ -83,6 +92,7 @@ $root.nodedemo = (function() {
         helloworld.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.str);
             if (message.opt != null && message.hasOwnProperty("opt"))
                 writer.uint32(/* id 3, wireType 0 =*/24).int32(message.opt);
@@ -120,6 +130,9 @@ $root.nodedemo = (function() {
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
+                case 1:
+                    message.id = reader.int32();
+                    break;
                 case 2:
                     message.str = reader.string();
                     break;
@@ -131,6 +144,8 @@ $root.nodedemo = (function() {
                     break;
                 }
             }
+            if (!message.hasOwnProperty("id"))
+                throw $util.ProtocolError("missing required 'id'", { instance: message });
             if (!message.hasOwnProperty("str"))
                 throw $util.ProtocolError("missing required 'str'", { instance: message });
             return message;
@@ -163,6 +178,8 @@ $root.nodedemo = (function() {
         helloworld.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (!$util.isInteger(message.id))
+                return "id: integer expected";
             if (!$util.isString(message.str))
                 return "str: string expected";
             if (message.opt != null && message.hasOwnProperty("opt"))
@@ -183,6 +200,8 @@ $root.nodedemo = (function() {
             if (object instanceof $root.nodedemo.helloworld)
                 return object;
             var message = new $root.nodedemo.helloworld();
+            if (object.id != null)
+                message.id = object.id | 0;
             if (object.str != null)
                 message.str = String(object.str);
             if (object.opt != null)
@@ -204,9 +223,12 @@ $root.nodedemo = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
+                object.id = 0;
                 object.str = "";
                 object.opt = 0;
             }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
             if (message.str != null && message.hasOwnProperty("str"))
                 object.str = message.str;
             if (message.opt != null && message.hasOwnProperty("opt"))
