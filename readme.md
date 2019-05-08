@@ -8,8 +8,7 @@
 
 ```js
 // 转成js文件
-./node_modules/protobufjs/bin/pbjs -t static-module -w commonjs ./src/nodedemo.fi
-rst.proto > ./src/nodedemo.first.proto.js
-// 转成文件
- ./node_modules/protobufjs/bin/pbjs -t json ./src/nodedemo.first.proto > ./src/nodedemo.first.proto.json
+./node_modules/protobufjs/bin/pbjs -t static-module -w commonjs ./src/nodedemo.first.proto > ./src/nodedemo.first.js
+// 转成json文件
+ ./node_modules/protobufjs/bin/pbjs -t json ./src/nodedemo.first.proto > ./src/nodedemo.first.json
 ```
