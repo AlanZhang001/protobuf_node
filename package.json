@@ -1,0 +1,23 @@
+{
+  "name": "protobuf_node",
+  "version": "1.0.0",
+  "description": "[在NodeJS中玩转Protocol Buffer](https://imweb.io/topic/570130a306f2400432c1396c)",
+  "main": "index.js",
+  "dependencies": {
+    "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlanZhang001/protobuf_node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlanZhang001/protobuf_node/issues"
+  },
+  "homepage": "https://github.com/AlanZhang001/protobuf_node#readme"
+}
